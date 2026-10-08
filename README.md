@@ -16,15 +16,13 @@ Built during a research internship at the Cisco–La Trobe Centre for AI and IoT
 
 **Approach.** I led the design of a shared system for detecting and tracking people, checking possible weapons, and recognising when a person is down. It groups repeated detections into incidents and offers urgent and deferred review queues. The detection rules were fixed before the final tests.
 
-**Results.** Weapons were detected in **75% (36/48)** of incidents at both alert settings. Falls were detected in **35% (321/914)** and **61% (556/914)**. At those settings, false alerts were broadly **4–9×** higher at the held-out MEVA site than on tuning footage. Both original criteria were **NOT MET**. The revised weapons criterion was **MET**, but changed after seeing results (**post-hoc**). The revised falls criterion was set before testing (**pre-test**) and was **NOT MET**. **Combined real-time test (weapons and falls on several feeds at once): not passed**.
+**Results.** On held-out test footage the system caught **75% of weapon incidents (36/48)** and **35–61% of falls**, depending on the review tier. At those tiers, false alerts were **5–7× higher** at an unseen test site than on tuning footage. Neither task met its original target, and the combined real-time test did not pass. [Full results and criteria](#results-at-a-glance).
 
 **What I learned.** Detection accuracy alone does not establish deployment readiness. Missed people, misleading objects and delivery delays matter too. The result is a transparent evaluation and human-review workflow, with failures documented alongside successful detections.
 
-**Scores are model confidence, not probabilities.**
-
 ## Results at a glance
 
-**Alert now** is the urgent review tier; **Check when free** is the deferred tier. Recall is the share of eligible incidents detected. A camera-hour is one hour of footage from one camera; false-alert rates count new incidents, excluding updates to an existing alert. These are the original, unadjusted results from the final tests. Displayed values are rounded; [full tables and exact values](docs/results.md) retain every fixed operating point.
+**Alert now** is the urgent review tier and **Check when free** the deferred tier. They use the q2 and q5 rules, selected to stay within validation budgets of 2 and 5 false alerts per camera-hour. Recall is the share of eligible incidents detected. A camera-hour is one hour of footage from one camera; false-alert rates count new incidents, excluding updates to an existing alert. False alerts are measured on normal footage from two public datasets not used for tuning: MEVA (the held-out test site) and NWPU Campus. These are the original, unadjusted results from the final tests, rounded for display; scores are model confidence, not probabilities. [Full tables and exact values](docs/results.md).
 
 | Task | Tier | Detected / eligible | Recall, 95% confidence interval | MEVA-test false alerts per camera-hour | NWPU false alerts per camera-hour |
 |---|---|---|---|---:|---:|
@@ -33,15 +31,15 @@ Built during a research internship at the Cisco–La Trobe Centre for AI and IoT
 | Falls | Alert now | 321/914 | 35% (32–38%) | 9.4 | 32.0 |
 | Falls | Check when free | 556/914 | 61% (58–64%) | 34.9 | 67.7 |
 
-**Weapons: Original criterion (≤0.1 false alerts per camera-hour): NOT MET. Revised criterion (≤5): MET, but revised after the test results were known (post-hoc).** The qualifying fixed operating points are stricter than the two displayed review tiers; [exact qualifying operating points](docs/results.md) are reported separately.
+**Weapons:** original criterion (≤0.1 false alerts per camera-hour) **NOT MET**. Revised criterion (≤5) **MET**, but revised after the results were known (**post-hoc**). It is met at stricter settings than the two tiers above: at q1, the system caught **69% (33/48)** of weapon incidents at **3.1** false alerts per camera-hour on the MEVA test. [Exact qualifying settings](docs/results.md).
 
-**Falls: Revised criterion (≤5, set before testing): NOT MET. Original criterion (≤0.1): NOT MET.** The revised criterion requires at least half of eligible incidents at an actual MEVA-test rate within the limit.
+**Falls:** revised criterion (≤5, set before testing) **NOT MET**; original criterion (≤0.1) **NOT MET**. The revised criterion required at least half of eligible incidents to be detected while staying within the limit on the MEVA test.
 
-**Combined delivery test: not passed.** After batching, 95% of detected weapon alerts arrived within four seconds, but falls still exceeded the ten-second limit with three feeds. The two-feed attempt stopped on a GPU error. No passing combined feed count was established. See the [full combined-test result and limitations](docs/results.md).
+**Combined real-time test: not passed.** After batching, 95% of detected weapon alerts arrived within four seconds, but falls alerts still exceeded the ten-second limit with three feeds, and the two-feed attempt stopped on a GPU error. No number of simultaneous feeds was shown to meet the limit. [Full combined-test result](docs/results.md).
 
-In the weapons test sequences, median detection delay was **1 s** and the 95th percentile was **4.5 s** at both tiers, assuming **2 frames per second**. These timings measure progress through recorded frames, not live delivery speed, and do not override the failed combined delivery test. See the [full aggregate tables](docs/results.md), [evaluation protocol](docs/evaluation_protocol.md) and [model cards](docs/model_cards/).
+In the weapons test sequences, median detection delay was **1 s** and the 95th percentile **4.5 s** at both tiers, assuming **2 frames per second**. These figures measure time through recorded footage, not live delivery speed. See the [full aggregate tables](docs/results.md), [evaluation protocol](docs/evaluation_protocol.md) and [model cards](docs/model_cards/).
 
-![Recall and false-alert transfer across fixed operating points](assets/recall_false_alerts.png)
+![Recall and false-alert transfer across the six fixed rules](assets/recall_false_alerts.png)
 
 ## Architecture
 
@@ -58,27 +56,25 @@ flowchart LR
     G --> I[Event matching and exposure accounting]
 ```
 
-![Pipeline architecture](assets/architecture.svg)
-
-[Architecture and interfaces](docs/architecture.md) explain the portable model adapters and notice schema.
+[Architecture and interfaces](docs/architecture.md) describes the swappable model adapters and the alert record format.
 
 ### Key design decisions and trade-offs
 
 - **Cascade:** shared perception supplies task-specific heads. This reduces duplicated work, but a missed person can prevent either task from seeing useful evidence.
 - **Vision-language verifier:** explicit `not_weapon` answers veto candidates below the high-score threshold. Skipping verification for high scores preserves recall but admits many look-alikes.
-- **Recall-first operating points:** selection maximises incident recall within a validation false-alert budget. Test results show why that budget needs site-specific validation.
+- **Recall-first settings:** each rule maximises incident recall within a validation false-alert budget. The test results show that the budget needs checking at each new site.
 - **Two tiers:** urgent and deferred review group detections using only information already seen. Updates can detect an incident missed by the first alert; only new alerts count towards false-alert workload.
 - **Generic weapon headline:** subtype guesses are unreliable. The operator sees “weapon”; knife and firearm recall are still evaluated separately.
 
 ## Evaluation methodology
 
-Success criteria and event matching were recorded before evaluation; the weapons acceptance criterion was subsequently revised **post-hoc**, while the falls criterion was set **before testing**. Each task was tested once on held-out data using fixed operating points. Positive holdouts and negative footage from an unseen site were kept separate from tuning; the public datasets still share actors and staged conditions.
+Success criteria and event-matching rules were recorded before evaluation; the weapons criterion was later revised, as noted above. Each task was tested once on held-out data using fixed settings. Positive holdouts and negative footage from an unseen site were kept separate from tuning; the public datasets still share actors and staged conditions.
 
-Evaluation matches notices to incidents within the declared window and spatial rule, measures negative exposure in camera-hours, and reports Wilson recall intervals and exact one-sided false-alert bounds. Dataset-specific denominators are retained. The public evaluator accepts supplied notice and annotation files and emits aggregate metrics; synthetic fixtures exercise boundary behaviour without data or weights. [Protocol](docs/evaluation_protocol.md) · [decisions](docs/decisions.md).
+Evaluation matches alerts to incidents within a declared time window and spatial rule, measures normal footage in camera-hours, and reports Wilson 95% intervals for recall and exact one-sided upper bounds for false-alert rates. The public evaluator takes alert and annotation files and outputs aggregate metrics; synthetic test fixtures check edge cases without data or weights. [Protocol](docs/evaluation_protocol.md) · [decisions](docs/decisions.md).
 
 ## Failure analysis
 
-**Verifier bypass.** Of **643** new MEVA-test alerts that bypassed verification in the urgent tier, **610** had saved `not_weapon` answers that would trigger a veto if checked. This is a post-hoc observation from saved predictions, not a rerun of an always-verify pipeline; continuation grouping means it cannot simply be subtracted from the original false-alert total.
+**Verifier bypass.** In the urgent tier, **643** new MEVA-test alerts skipped verification because of their high scores. For **610** of them, the verifier's saved answer was `not_weapon`, so they would have been vetoed if checked. This is a post-hoc observation from saved predictions, not a rerun, and because later updates are grouped with earlier alerts it cannot simply be subtracted from the false-alert total.
 
 **Weapon look-alikes.** Mops, notebook edges and pens can look weapon-like within tight crops. Occlusion and hand-crop context matter. Model guesses, assistant observations and human decisions remain separate.
 
@@ -86,13 +82,13 @@ Evaluation matches notices to incidents within the declared window and spatial r
 
 ![Observed false-alert causes and review scope](assets/false_alert_causes.png)
 
-![Source-time median and p95 alert delays, distinct from the failed combined paced gate](assets/alert_latency.png)
+![Median and 95th-percentile detection delay in recorded-footage time, separate from the combined real-time test](assets/alert_latency.png)
 
 [Detailed failure analysis and limitations](docs/failure_analysis.md).
 
 ## Limitations and next steps
 
-The public datasets include staged incidents. The weapons footage reuses some actors and settings. Sequence timing is approximate, and the study used one random seed. Scores are not calibrated probabilities. Finding the right person does not guarantee that the weapon is correctly located or its type correctly identified. Labels in footage used to measure false alerts are incomplete, and reviewers inspected selected frames. Falls were repeatedly tuned on **101** events. In **342/914** test events, the assignment of the person was ambiguous. People can be hidden from view, and clips can cut incidents short. Some cached intermediate results lack full runtime records. Slow collapses were not evaluated. Performance at a campus or on live feeds is not guaranteed. The **combined delivery test was not passed**. The [model cards](docs/model_cards/) and [full limitations](docs/failure_analysis.md) give more detail.
+The public datasets include staged incidents. The weapons footage reuses some actors and settings. Sequence timing is approximate, and the study used one random seed. Scores are not calibrated probabilities. Finding the right person does not guarantee that the weapon is correctly located or its type correctly identified. Labels in footage used to measure false alerts are incomplete, and reviewers inspected selected frames. Falls were repeatedly tuned on **101** events. In **342/914** test events, the assignment of the person was ambiguous. People can be hidden from view, and clips can cut incidents short. Some cached intermediate results lack full runtime records. Slow collapses were not evaluated. Performance at a campus or on live feeds is not guaranteed. The [model cards](docs/model_cards/) and [full limitations](docs/failure_analysis.md) give more detail.
 
 Post-hoc recommendations, **not applied to the tested models**, are to verify every weapon alert, calibrate site thresholds from normal-footage burn-in, assess a border filter for fixed CCTV, and train a detector on prone people. Further work includes pens/tools/mops, hand-crop padding, cyclist/sitting hard negatives and score calibration. Violence and the separate comparison using newer footage were deferred and were **not run**; [future work](docs/failure_analysis.md) records the planned data and comparison targets.
 
@@ -102,8 +98,8 @@ Use Python **3.12 or newer**. The default installation and tests are CPU-only an
 
 ```bash
 python -m venv .venv
-# Activate the environment using your shell's usual command.
-python -m pip install -e '.[dev,dashboard]'
+source .venv/bin/activate        # Windows: .venv\Scripts\activate
+python -m pip install -e ".[dev,dashboard]"
 make lint
 make test
 make figures
@@ -119,7 +115,7 @@ python scripts/run_pipeline.py --config configs/runtime.yaml --check-inputs
 python scripts/evaluate.py --help
 ```
 
-Installing and executing the optional model adapters is a separate step. The public CPU checks do not claim end-to-end inference identity across environments. No dataset demo bundle is shipped: obtain authorised validation/demo footage separately and build a local bundle only under its redistribution and attribution terms. Any future redistributable sample bundle belongs in a release asset, not source history. [Media sources](docs/media_sources.md).
+Installing and running the optional model adapters is a separate step, and the CPU tests do not guarantee identical model outputs on other hardware or software. No dataset demo bundle is shipped: obtain authorised footage separately and use it only under its redistribution and attribution terms. [Media sources](docs/media_sources.md).
 
 ## Repository structure
 
@@ -137,7 +133,7 @@ assets/          original plots, diagrams and synthetic interface captures
 
 I designed the approach from a literature review, chose the datasets, wrote the evaluation protocol and success criteria, reviewed the results and footage myself, and made every go/no-go decision. AI coding agents (OpenAI Codex) wrote most of the code under that gated process.
 
-This repo is a curated release; the full experiment history (**26 gates** and the experiment registry) is kept in a private research repository. [The gated process](docs/process.md) records freezes, failed gates, declared deviations and human approvals.
+This repo is a curated release. The full experiment history, including 26 review checkpoints ("gates") where code and settings were frozen and approved before the next step, is kept in a private research repository. [The gated process](docs/process.md) records freezes, failed gates, declared deviations and human approvals.
 
 ## Responsible use
 
@@ -147,4 +143,4 @@ The system detects objects and posture, not identity. There is no face recogniti
 
 Thanks to my supervisor Phu, the Cisco–La Trobe Centre for AI and IoT, and the dataset authors. Their support does not imply endorsement of every result or future use.
 
-Use [CITATION.cff](CITATION.cff) to cite this release. Original project code and original media use the [MIT licence](LICENSE), copyright Max Blunden-Slusarski. External models, software and datasets retain their own terms; the optional Ultralytics integration is **AGPL-3.0** unless separately licensed. [Third-party notices](THIRD_PARTY_NOTICES.md).
+Use [CITATION.cff](CITATION.cff) to cite this release. Original project code and original media use the [MIT licence](LICENSE), copyright Max Blunden-Slusarski. External models, software and datasets retain their own terms; the optional Ultralytics integration is **AGPL-3.0** unless separately licensed. [Third-party notices](THIRD_PARTY_NOTICES.md). Changes between releases are listed in the [changelog](CHANGELOG.md).

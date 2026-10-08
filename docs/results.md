@@ -2,11 +2,11 @@
 
 This is the public aggregate view of the final research results. The original rates remain headline; human-adjusted weapon rates are secondary. No test event, camera identifier, annotation or image is included. q is a validation false-alert budget label, not a promised rate on new footage. NEW alerts alone count towards false alerts per camera-hour; UPDATEs may credit recall.
 
-**Weapons: Original pre-registered ≤0.1 criterion: NOT MET. Revised ≤5 criterion: MET, post-hoc revision (Max, 6 Oct), after weapons locked results were known.** The qualifying frozen rules are q0.1/q0.25/q0.5/q1; neither dashboard tier qualifies.
+**Weapons: Original pre-registered ≤0.1 criterion: NOT MET. Revised ≤5 criterion: MET, post-hoc revision on 6 October 2026, after weapons locked results were known.** The qualifying frozen rules are q0.1/q0.25/q0.5/q1; neither dashboard tier qualifies.
 
-**Falls: revised primary ≤5 criterion (pre-test amendment 2, Max, 6 Oct): NOT MET; original pre-registered ≤0.1, superseded but retained: NOT MET.** The ≤2 and ≤0.5 alternatives also fail. Human acceptance of the research deliverable does not change these outcomes.
+**Falls: revised primary ≤5 criterion (pre-test amendment 2, 6 October 2026): NOT MET; original pre-registered ≤0.1, superseded but retained: NOT MET.** The ≤2 and ≤0.5 alternatives also fail. Human acceptance of the research deliverable does not change these outcomes.
 
-**GI: FAIL.** No passing combined feed count was established. Scores are model confidence, not probabilities.
+**Combined real-time test (gate GI): not passed.** No number of simultaneous feeds was shown to meet the alert-delay limit. Scores are model confidence, not probabilities.
 
 ## Locked headlines
 
@@ -347,7 +347,7 @@ A is the 828-notice lower-q census; B is the 150-view upper-q sample, with fixed
 | C | standing | 4/50 | 8.0% | 3.2%–18.8% |
 | C | unclear | 1/50 | 2.0% | 0.4%–10.5% |
 
-## GI: paced combined validation
+## Combined real-time test (gate GI)
 
 | Configuration | Knife p95 q2 / q5 (s) | Firearm p95 q2 / q5 (s) | Falls p95 q2 / q5 (s) | Hour result |
 |---|---:|---:|---:|---|
@@ -366,7 +366,7 @@ Preservation comparisons were exact (240/240). All four completed hours had 1,35
 
 The reused negative perception caches lack execution-linked historical runtime/package provenance. All 1,053 payload hashes matched receipts and code/configuration comparisons agreed. Three perception-only 60-second prefix checks matched exactly: box IoU 1.0, zero unmatched detections, zero keypoint differences and identical track IDs. This narrow check does not establish whole-dataset identity or recover historical provenance. Reuse was explicitly accepted before the falls locked run.
 
-The [aggregate JSON](../results/aggregate.json) drives the [figures](../scripts/make_figures.py). Six-q validation FA rates are reported for both tasks. Following the 8 October release authorisation, all six validation recall points are taken from the [frozen validation gate reports cited beside each value](#validation-recall-used-in-the-figure). Locked results and false-alert rates remain unchanged. The source-time median/p95 plot must be read with the GI failure above.
+The [aggregate JSON](../results/aggregate.json) drives the [figures](../scripts/make_figures.py). Six-q validation FA rates are reported for both tasks. Following the 8 October release authorisation, all six validation recall points are taken from the [frozen validation gate reports cited beside each value](#validation-recall-used-in-the-figure). Locked results and false-alert rates remain unchanged. The source-time median/p95 plot must be read with the combined real-time test result above.
 
 All limitations and post-hoc recommendations remain in [failure analysis](failure_analysis.md). See the [evaluation protocol](evaluation_protocol.md) for denominators, exposure and confidence intervals.
 

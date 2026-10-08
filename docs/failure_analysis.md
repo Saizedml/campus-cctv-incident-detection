@@ -28,7 +28,7 @@ Sitting, riding/cycling and walking account for 275/828, 267/828 and 180/828 obs
 
 ![Source-time median and p95 delay; not paced delivery](../assets/alert_latency.png)
 
-Source-time delay is conditional on detected events and excludes missed incidents. Weapon sequence time is nominal; falls delay follows source timestamps. **GI FAIL:** the combined paced system has no certified passing feed count. Batching brought detected weapon p95 below four seconds, while falls exceeded ten seconds even at three feeds. The two-feed fallback failed in the verifier; one feed was not attempted. Cached dashboard playback is not an inference benchmark.
+Source-time delay is conditional on detected events and excludes missed incidents. Weapon sequence time is nominal; falls delay follows source timestamps. **Combined real-time test: not passed.** No number of simultaneous feeds was shown to meet the alert-delay limit. Batching brought detected weapon p95 below four seconds, while falls exceeded ten seconds even at three feeds. The two-feed fallback failed in the verifier; one feed was not attempted. Cached dashboard playback is not an inference benchmark.
 
 ## Consolidated limitations
 
@@ -45,7 +45,7 @@ Source-time delay is conditional on detected events and excludes missed incident
 - Original reference models have no measured locked weapon-event rows. Their separate Dangerous Items frame AP does not supply those missing comparisons.
 - Falls frame scores include 22,713 missing-subject errors among 95,373 labelled samples. Five-class macro-F1 is 0.2568; six-class is 0.2163; tracked-subject-only 0.3000 is secondary.
 - No separate slow-collapse result exists. Appearance/video ablations, further falls head comparisons and score calibration were not completed. Lying-specific false-alert coverage is limited.
-- The paced test mixed nominal-rate weapon sequences with higher-rate falls/negative footage. Repeated loops are not independent accuracy trials or a certification of native multi-camera capacity. GI failed, and the hardware failure's cause is unestablished.
+- The paced test mixed nominal-rate weapon sequences with higher-rate falls/negative footage. Repeated loops are not independent accuracy trials or a certification of native multi-camera capacity. The combined real-time test failed, and the hardware failure's cause is unestablished.
 - No live deployment, campus reliability, autonomous intervention, face recognition or identity capability is claimed. Neither human acceptance nor a dashboard run-through upgrades failed numerical criteria.
 
 ## Additional interpretation boundaries
@@ -56,7 +56,7 @@ Source-time delay is conditional on detected events and excludes missed incident
 
 **Review scope.** The 300-view weapon sample contains 235 MEVA and 65 NWPU views. Identical evidence maps to 746 of 3,098 tier notices, but this does not enlarge the random sample. The remaining 2,352 tier notices and 90 other-q miss rows were not individually reviewed. Falls upper-q output has 4,896 notices and 3,542 unique views; 3,392 views lie outside its 150-view random sample, although some also have reviewed lower-q evidence. A further 543 q2 falls misses are outside visual review. Some neighbouring views show the same object. Assistant suspicions are neither human confirmation nor proof of a prop; an outside-sample view is unassessed. In the falls miss sample, “falling” describes visible motion in 37/50 snippets and does not validate the assigned subject or reject other ground truth.
 
-**Secondary exclusions and provenance.** Human-confirmed weapon point views are not fully annotated incident intervals. Their secondary notice exclusions leave exposure, subtype rates, NWPU rates and recall unchanged; they cannot justify removing time or extrapolating to other views. Dedicated historical tracker-parameter identity is also absent from the reused-cache record. Later hash and prefix agreement does not establish execution identity. The reported absence of a memory-growth flag in completed GI hours is limited to those schedules and checks; the failed partial run provides no completed-hour certification.
+**Secondary exclusions and provenance.** Human-confirmed weapon point views are not fully annotated incident intervals. Their secondary notice exclusions leave exposure, subtype rates, NWPU rates and recall unchanged; they cannot justify removing time or extrapolating to other views. Dedicated historical tracker-parameter identity is also absent from the reused-cache record. Later hash and prefix agreement does not establish execution identity. The reported absence of a memory-growth flag in completed combined-test hours is limited to those schedules and checks; the failed partial run provides no completed-hour certification.
 
 ## Next steps, post-hoc recommendations, not applied
 

@@ -20,9 +20,9 @@ Recall has a Wilson 95% interval. Rate certification uses the exact one-sided 95
 
 ## Criteria and chronology
 
-**Weapons, Original pre-registered ≤0.1 criterion: NOT MET. Revised ≤5 criterion: MET, post-hoc revision (Max, 6 Oct), after weapons locked results were known.** A frozen rule needs at least half the weapon incidents at an actual MEVA-test rate within the limit. q0.1/q0.25/q0.5/q1 qualify for the revised limit; q2/q5 do not.
+**Weapons, Original pre-registered ≤0.1 criterion: NOT MET. Revised ≤5 criterion: MET, post-hoc revision on 6 October 2026, after weapons locked results were known.** A frozen rule needs at least half the weapon incidents at an actual MEVA-test rate within the limit. q0.1/q0.25/q0.5/q1 qualify for the revised limit; q2/q5 do not.
 
-**Falls, revised primary ≤5 criterion (pre-test amendment 2, Max, 6 Oct): NOT MET. Original pre-registered ≤0.1, superseded but retained: NOT MET.** The revision was registered before the falls locked run, with the frozen eligible-event denominator. No frozen rule reaches at least half the eligible events while staying within the actual rate ceiling.
+**Falls, revised primary ≤5 criterion (pre-test amendment 2, 6 October 2026): NOT MET. Original pre-registered ≤0.1, superseded but retained: NOT MET.** The revision was registered before the falls locked run, with the frozen eligible-event denominator. No frozen rule reaches at least half the eligible events while staying within the actual rate ceiling.
 
 ## Review and diagnostics
 
@@ -34,4 +34,4 @@ A secondary localisation metric requires a score-generating detection to overlap
 
 ## Latency
 
-Source-time detection delay is distinct from paced delivery latency. The combined validation test included queueing, repeated onsets, resource telemetry, schema checks and preservation probes. Fallbacks were ordered: batch across feeds, separate the verifier, then reduce feeds. **GI FAIL:** no passing combined feed count was established. The frozen notices were preserved, but falls delivery was too slow and the partial two-feed run failed. See [results](results.md).
+Source-time detection delay is distinct from paced delivery latency. The combined validation test included queueing, repeated onsets, resource telemetry, schema checks and preservation probes. Fallbacks were ordered: batch across feeds, separate the verifier, then reduce feeds. **Combined real-time test: not passed.** No number of simultaneous feeds was shown to meet the alert-delay limit. The frozen notices were preserved, but falls delivery was too slow and the partial two-feed run failed. See [results](results.md).

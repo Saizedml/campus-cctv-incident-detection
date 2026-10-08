@@ -113,8 +113,8 @@ def curve_plot(data: dict[str, Any]) -> None:
             ax.plot(x, [r[field] for r in records], marker=marker, color=colour, label=label)
         ax.set_xticks(x, [f"{v:g}" for v in q])
         ax.set_yscale("log")
-        ax.set_xlabel("Frozen q (validation budget label)")
-        ax.set_ylabel("NEW false alerts / camera-hour (log scale)")
+        ax.set_xlabel("Rule q (validation false-alert budget per camera-hour)")
+        ax.set_ylabel("New false alerts per camera-hour (log scale)")
         ax.set_title(f"{task.title()}: validation-to-test transfer")
         ax.grid(alpha=0.18)
         ax.legend(fontsize=8)
@@ -135,8 +135,8 @@ def observation_plot(data: dict[str, Any]) -> None:
     """Plot assistant observations without implying adjudicated causal labels."""
     fig, axes = plt.subplots(1, 2, figsize=(12, 5.5))
     for ax, key, title, colour in (
-        (axes[0], "weapons_review", "Weapons: selected sample observations", BLUE),
-        (axes[1], "falls_review", "Falls: lower-q notice observations", ORANGE),
+        (axes[0], "weapons_review", "Weapons: random sample of 300 views", BLUE),
+        (axes[1], "falls_review", "Falls: all 828 lower-budget alerts", ORANGE),
     ):
         group = data[key]
         categories = group["categories"]
@@ -162,14 +162,14 @@ def observation_plot(data: dict[str, Any]) -> None:
         ax.invert_yaxis()
         ax.set_xlim(0, 70)
         ax.set_title(title)
-        ax.set_xlabel("Share of stated review units (%) · Wilson 95%")
+        ax.set_xlabel("Share of reviewed items (%), with Wilson 95% interval")
         ax.grid(axis="x", alpha=0.18)
     fig.suptitle("Look-alikes and everyday postures generate alerts", fontsize=16)
     fig.text(
         0.05,
         0.015,
         "Weapons: 300 unique sampled views; selected categories only. Mops, notebook edges and pens are qualitative examples.\n"
-        "Falls: 828 notices; evidence can repeat across rules. Observation labels are separate from model guesses and human review.",
+        "Falls: 828 alerts; evidence can repeat across rules. Observation labels are separate from model guesses and human review.",
         fontsize=9,
     )
     fig.tight_layout(rect=(0, 0.10, 1, 0.94))
@@ -177,7 +177,7 @@ def observation_plot(data: dict[str, Any]) -> None:
 
 
 def latency_plot(data: dict[str, Any]) -> None:
-    """Keep source-time detection delay visibly separate from the failed paced gate."""
+    """Keep footage-time detection delay visibly separate from the failed real-time test."""
     fig, axes = plt.subplots(1, 2, figsize=(11.5, 5.4))
     for ax, task in zip(axes, ("weapons", "falls"), strict=True):
         records = [r for r in data[task] if r["q"] in (2, 5)]
@@ -191,37 +191,38 @@ def latency_plot(data: dict[str, Any]) -> None:
             color=GREEN,
         )
         ax.bar(x + width / 2, [r["p95_s"] for r in records], width, label="p95", color=BLUE)
-        ax.set_xticks(x, ["q2 · Alert now", "q5 · Check when free"])
+        ax.set_xticks(x, ["Alert now (q2)", "Check when free (q5)"])
         ax.set_title(
-            f"{task.title()} · " + ("nominal 2 fps time" if task == "weapons" else "source time")
+            f"{task.title()} · "
+            + ("footage time at nominal 2 fps" if task == "weapons" else "footage time")
         )
         ax.set_ylim(0, 5.5)
-        ax.set_ylabel("Detection delay (seconds; detected events only)")
+        ax.set_ylabel("Delay in seconds (detected incidents only)")
         ax.legend()
         ax.grid(axis="y", alpha=0.18)
         for xx, r in zip(x, records, strict=True):
             ax.text(
                 xx - width / 2,
                 r["median_s"] + 0.10,
-                f"{r['median_s']:.4f}",
+                f"{r['median_s']:.1f}",
                 ha="center",
                 fontsize=9,
             )
             ax.text(
                 xx + width / 2,
                 r["p95_s"] + 0.10,
-                f"{r['p95_s']:.4f}",
+                f"{r['p95_s']:.1f}",
                 ha="center",
                 fontsize=9,
             )
-    fig.suptitle("Source-time detection delay is not delivery latency", fontsize=16)
+    fig.suptitle("Detection delay in recorded footage is not live delivery time", fontsize=16)
     best_p95 = min(data["gi"], key=lambda record: max(record["falls_p95_s"]))["falls_p95_s"]
     fig.text(
         0.06,
         0.025,
-        "GI FAIL · No passing combined feed count. Best completed falls paced p95: "
-        f"{best_p95[0]:.3f} / {best_p95[1]:.3f} s (q2 / q5).\n"
-        "Short offline delays omit queueing. Missed incidents do not enter these median or p95 values.",
+        "Combined real-time test: not passed. In the best completed multi-feed run, "
+        f"95th-percentile falls alert delay was about {max(best_p95):,.0f} s (limit 10 s).\n"
+        "These bars exclude queueing, and missed incidents do not enter the median or p95 values.",
         color=ORANGE,
         fontsize=10,
         weight="bold",
@@ -283,9 +284,9 @@ def architecture() -> None:
     ax.axis("off")
     box(ax, 0.025, 0.4, 0.15, 0.17, "Video\nframes")
     box(ax, 0.225, 0.4, 0.17, 0.17, "Shared pose\nand tracks")
-    box(ax, 0.465, 0.64, 0.23, 0.18, "Weapon detector\nConditional VLM")
-    box(ax, 0.465, 0.17, 0.23, 0.18, "Geometry features\nPerson-down head", GREEN)
-    box(ax, 0.765, 0.4, 0.20, 0.17, "Causal rules\nNEW / UPDATE", ORANGE)
+    box(ax, 0.465, 0.64, 0.23, 0.18, "Weapon detector\n+ vision-language check")
+    box(ax, 0.465, 0.17, 0.23, 0.18, "Pose geometry\n+ person-down head", GREEN)
+    box(ax, 0.765, 0.4, 0.20, 0.17, "Alert grouping\nnew / update", ORANGE)
     for a, b in (
         ((0.175, 0.485), (0.22, 0.485)),
         ((0.395, 0.50), (0.455, 0.71)),
@@ -305,7 +306,7 @@ def architecture() -> None:
     ax.text(
         0.03,
         0.01,
-        "Research prototype · Scores are model confidence, not probabilities. · GI FAIL: no passing combined feed count",
+        "Research prototype · Scores are model confidence, not probabilities.",
         fontsize=9,
     )
     save(fig, "architecture")
@@ -373,7 +374,7 @@ def social_preview() -> None:
     ax.text(
         0.065,
         0.065,
-        "Max Blunden-Slusarski · Research prototype · GI FAIL",
+        "Max Blunden-Slusarski · Research internship prototype",
         fontsize=13,
         color="white",
     )

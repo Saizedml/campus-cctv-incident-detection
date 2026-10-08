@@ -1,7 +1,7 @@
 """Single-source combined inference with the frozen task decision rules.
 
 This serial adapter makes the curated components executable. It does not claim
-that a combined feed count meets the latency budget: the combined GI gate failed.
+that a combined feed count meets the latency budget: the combined real-time test failed.
 """
 
 from __future__ import annotations

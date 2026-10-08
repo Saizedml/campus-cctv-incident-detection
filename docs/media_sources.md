@@ -10,7 +10,7 @@ Every distributed image is an original diagram, an aggregate chart or a syntheti
 | `assets/recall_false_alerts.png` | Same aggregate chart | Original chart, Max Blunden-Slusarski; MIT |
 | `assets/false_alert_causes.svg` | Aggregate review observations, with sampling units and limitations | Original chart, Max Blunden-Slusarski; MIT |
 | `assets/false_alert_causes.png` | Same aggregate chart | Original chart, Max Blunden-Slusarski; MIT |
-| `assets/alert_latency.svg` | Aggregate source-time median/p95; explicitly separate from GI delivery latency | Original chart, Max Blunden-Slusarski; MIT |
+| `assets/alert_latency.svg` | Aggregate source-time median/p95; explicitly separate from the combined real-time test | Original chart, Max Blunden-Slusarski; MIT |
 | `assets/alert_latency.png` | Same aggregate chart | Original chart, Max Blunden-Slusarski; MIT |
 | `assets/social_preview.png` | Original title, pitch and architecture motif; no source footage | Original artwork, Max Blunden-Slusarski; MIT |
 | `assets/dashboard_queue.png` | Locally rendered synthetic offline dashboard, fictional examples only | Original interface, Max Blunden-Slusarski; MIT |

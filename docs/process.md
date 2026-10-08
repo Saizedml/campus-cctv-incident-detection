@@ -20,7 +20,7 @@ The workflow separated decisions from execution: define comparisons and stop rul
 | GD1, playlist proposal | Awaited human review at that stage. |
 | GD1, automated readiness | Checks passed; human run-through still pending then. |
 | GD1, first approval | GO from Max; subsequent revised approval recorded separately. |
-| W-DONE | GO with limitations; original NOT MET, revised MET under post-hoc revision (Max, 6 Oct). |
+| W-DONE | GO with limitations; original NOT MET, revised MET under post-hoc revision on 6 October 2026. |
 | GF1 | FALLBACK-PASS; geometry head selected over the alternative. |
 | GF2 | FALLBACK-PASS; initial plain-down rule later amended. |
 | GF-SN | FALLBACK-PASS with safety net off: no gain. |
@@ -31,7 +31,7 @@ The workflow separated decisions from execution: define comparisons and stop rul
 | GD1/GD2 revised run-through | PASS from Max for the revised dashboard. |
 | GD1 final | PASS from Max; UI acceptance is separate from accuracy. |
 | GD2 final | PASS from Max without requested changes. |
-| GI | FAIL; no passing combined feed count; partial reduced-feed attempt ended with a CUDA failure. |
+| GI, combined real-time test | FAIL; no passing combined feed count; partial reduced-feed attempt ended with a CUDA failure. |
 
 The public release removes private orchestration and data-specific records, retains portable inference interfaces and event/evaluation logic, and uses synthetic fixtures for CPU tests. The equivalence check reads stored research notices locally without redistributing them. Dependency upgrades and later model changes require a fresh version and evaluation; they do not amend frozen research results.
 

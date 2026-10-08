@@ -3,9 +3,9 @@
   "scores": "Scores are model confidence, not probabilities.",
   "criteria": {
     "weapons_original": "NOT MET",
-    "weapons_revised": "MET \u2014 post-hoc revision (Max, 6 Oct)",
+    "weapons_revised": "MET \u2014 post-hoc revision on 6 October 2026",
     "falls_original": "NOT MET \u2014 superseded but retained",
-    "falls_revised": "NOT MET \u2014 pre-test amendment 2 (Max, 6 Oct)",
+    "falls_revised": "NOT MET \u2014 pre-test amendment 2 on 6 October 2026",
     "gi": "FAIL \u2014 no passing combined feed count established"
   },
   "weapons": [

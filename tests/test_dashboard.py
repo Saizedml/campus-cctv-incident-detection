@@ -23,10 +23,10 @@ def test_static_dashboard_has_no_network_dependency(tmp_path):
     assert "connect-src 'none'" in html
     assert "<script src=" not in html
     assert "Scores are model confidence, not probabilities." in html
-    assert "GI FAIL" in html
-    assert "post-hoc revision (Max, 6 Oct)" in html
-    assert "pre-test amendment 2 (Max, 6 Oct)" in html
-    assert "35.12" in html and "60.83" in html
+    assert "Combined real-time test: not passed" in html
+    assert "revised after the results were known (post-hoc)" in html
+    assert "Revised ≤5, set before testing" in html
+    assert "35.1" in html and "60.8" in html
 
 
 def test_validation_rejects_duplicate_ids_and_invalid_confidence():
