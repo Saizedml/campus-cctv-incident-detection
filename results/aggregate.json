@@ -1,0 +1,545 @@
+{
+  "source": "Final research RESULTS, 8 October 2026; validation recall from the registered gate reports cited in docs/results.md; aggregate numbers only",
+  "scores": "Scores are model confidence, not probabilities.",
+  "criteria": {
+    "weapons_original": "NOT MET",
+    "weapons_revised": "MET \u2014 post-hoc revision (Max, 6 Oct)",
+    "falls_original": "NOT MET \u2014 superseded but retained",
+    "falls_revised": "NOT MET \u2014 pre-test amendment 2 (Max, 6 Oct)",
+    "gi": "FAIL \u2014 no passing combined feed count established"
+  },
+  "weapons": [
+    {
+      "q": 0.1,
+      "hits": 24,
+      "total": 48,
+      "recall": 0.5,
+      "wilson95": [
+        0.3639,
+        0.6361
+      ],
+      "median_s": 2.25,
+      "p95_s": 7.85,
+      "validation_fa_h": 0.0833,
+      "meva_test_fa_h": 0.4663,
+      "nwpu_fa_h": 0.3327,
+      "meva_transfer": "5.60\u00d7",
+      "nwpu_transfer": "3.99\u00d7"
+    },
+    {
+      "q": 0.25,
+      "hits": 28,
+      "total": 48,
+      "recall": 0.5833,
+      "wilson95": [
+        0.4428,
+        0.7115
+      ],
+      "median_s": 2.0,
+      "p95_s": 6.65,
+      "validation_fa_h": 0.1666,
+      "meva_test_fa_h": 0.7327,
+      "nwpu_fa_h": 0.6654,
+      "meva_transfer": "4.40\u00d7",
+      "nwpu_transfer": "3.99\u00d7"
+    },
+    {
+      "q": 0.5,
+      "hits": 29,
+      "total": 48,
+      "recall": 0.6042,
+      "wilson95": [
+        0.4631,
+        0.7298
+      ],
+      "median_s": 2.0,
+      "p95_s": 4.8,
+      "validation_fa_h": 0.3831,
+      "meva_test_fa_h": 1.3988,
+      "nwpu_fa_h": 1.5804,
+      "meva_transfer": "3.65\u00d7",
+      "nwpu_transfer": "4.12\u00d7"
+    },
+    {
+      "q": 1.0,
+      "hits": 33,
+      "total": 48,
+      "recall": 0.6875,
+      "wilson95": [
+        0.5467,
+        0.8005
+      ],
+      "median_s": 1.0,
+      "p95_s": 4.5,
+      "validation_fa_h": 0.7829,
+      "meva_test_fa_h": 3.0973,
+      "nwpu_fa_h": 3.9926,
+      "meva_transfer": "3.96\u00d7",
+      "nwpu_transfer": "5.10\u00d7"
+    },
+    {
+      "q": 2.0,
+      "hits": 36,
+      "total": 48,
+      "recall": 0.75,
+      "wilson95": [
+        0.6122,
+        0.8508
+      ],
+      "median_s": 1.0,
+      "p95_s": 4.5,
+      "validation_fa_h": 1.899,
+      "meva_test_fa_h": 12.7556,
+      "nwpu_fa_h": 16.3861,
+      "meva_transfer": "6.72\u00d7",
+      "nwpu_transfer": "8.63\u00d7"
+    },
+    {
+      "q": 5.0,
+      "hits": 36,
+      "total": 48,
+      "recall": 0.75,
+      "wilson95": [
+        0.6122,
+        0.8508
+      ],
+      "median_s": 1.0,
+      "p95_s": 4.5,
+      "validation_fa_h": 4.5977,
+      "meva_test_fa_h": 27.5428,
+      "nwpu_fa_h": 40.0087,
+      "meva_transfer": "5.99\u00d7",
+      "nwpu_transfer": "8.70\u00d7"
+    }
+  ],
+  "falls": [
+    {
+      "q": 0.1,
+      "hits": 140,
+      "total": 912,
+      "recall": 0.1535,
+      "wilson95": [
+        0.1316,
+        0.1784
+      ],
+      "median_s": 1.2716,
+      "p95_s": 4.1559,
+      "validation_fa_h": 0.0999,
+      "meva_test_fa_h": 0.716,
+      "nwpu_fa_h": 6.1552,
+      "meva_transfer": "7.16\u00d7",
+      "nwpu_transfer": "61.58\u00d7"
+    },
+    {
+      "q": 0.25,
+      "hits": 103,
+      "total": 912,
+      "recall": 0.1129,
+      "wilson95": [
+        0.094,
+        0.1351
+      ],
+      "median_s": 1.1202,
+      "p95_s": 4.5022,
+      "validation_fa_h": 0.2499,
+      "meva_test_fa_h": 1.2989,
+      "nwpu_fa_h": 4.5748,
+      "meva_transfer": "5.20\u00d7",
+      "nwpu_transfer": "18.31\u00d7"
+    },
+    {
+      "q": 0.5,
+      "hits": 262,
+      "total": 914,
+      "recall": 0.2867,
+      "wilson95": [
+        0.2583,
+        0.3168
+      ],
+      "median_s": 0.9174,
+      "p95_s": 4.2189,
+      "validation_fa_h": 0.4165,
+      "meva_test_fa_h": 6.0448,
+      "nwpu_fa_h": 17.8833,
+      "meva_transfer": "14.51\u00d7",
+      "nwpu_transfer": "42.94\u00d7"
+    },
+    {
+      "q": 1.0,
+      "hits": 358,
+      "total": 914,
+      "recall": 0.3917,
+      "wilson95": [
+        0.3606,
+        0.4237
+      ],
+      "median_s": 0.8673,
+      "p95_s": 4.2226,
+      "validation_fa_h": 0.9828,
+      "meva_test_fa_h": 11.9896,
+      "nwpu_fa_h": 26.2843,
+      "meva_transfer": "12.20\u00d7",
+      "nwpu_transfer": "26.74\u00d7"
+    },
+    {
+      "q": 2.0,
+      "hits": 321,
+      "total": 914,
+      "recall": 0.3512,
+      "wilson95": [
+        0.3209,
+        0.3827
+      ],
+      "median_s": 0.8073,
+      "p95_s": 3.8777,
+      "validation_fa_h": 1.7491,
+      "meva_test_fa_h": 9.4252,
+      "nwpu_fa_h": 32.0236,
+      "meva_transfer": "5.39\u00d7",
+      "nwpu_transfer": "18.31\u00d7"
+    },
+    {
+      "q": 5.0,
+      "hits": 556,
+      "total": 914,
+      "recall": 0.6083,
+      "wilson95": [
+        0.5763,
+        0.6394
+      ],
+      "median_s": 0.5702,
+      "p95_s": 3.4911,
+      "validation_fa_h": 4.8975,
+      "meva_test_fa_h": 34.8865,
+      "nwpu_fa_h": 67.7071,
+      "meva_transfer": "7.12\u00d7",
+      "nwpu_transfer": "13.82\u00d7"
+    }
+  ],
+  "validation_recall": {
+    "weapons": [
+      {
+        "q": 0.1,
+        "hits": 28,
+        "total": 64,
+        "source_report": "V_FTHNF_retuned_1610_20261004.md",
+        "source_row": "q=0.1",
+        "registry_experiment": "EXP-158"
+      },
+      {
+        "q": 0.25,
+        "hits": 30,
+        "total": 64,
+        "source_report": "V_FTHNF_retuned_1610_20261004.md",
+        "source_row": "q=0.25",
+        "registry_experiment": "EXP-158"
+      },
+      {
+        "q": 0.5,
+        "hits": 34,
+        "total": 64,
+        "source_report": "V_FTHNF_retuned_1610_20261004.md",
+        "source_row": "q=0.5",
+        "registry_experiment": "EXP-158"
+      },
+      {
+        "q": 1.0,
+        "hits": 37,
+        "total": 64,
+        "source_report": "V_FTHNF_retuned_1610_20261004.md",
+        "source_row": "q=1",
+        "registry_experiment": "EXP-158"
+      },
+      {
+        "q": 2.0,
+        "hits": 40,
+        "total": 64,
+        "source_report": "V_FTHNF_retuned_1610_20261004.md",
+        "source_row": "q=2",
+        "registry_experiment": "EXP-158"
+      },
+      {
+        "q": 5.0,
+        "hits": 43,
+        "total": 64,
+        "source_report": "V_FTHNF_retuned_1610_20261004.md",
+        "source_row": "q=5",
+        "registry_experiment": "EXP-158"
+      }
+    ],
+    "falls": [
+      {
+        "q": 0.1,
+        "hits": 26,
+        "total": 101,
+        "source_report": "GF_amend2_20261006.md",
+        "source_row": "q=0.1",
+        "registry_experiment": "EXP-197"
+      },
+      {
+        "q": 0.25,
+        "hits": 42,
+        "total": 101,
+        "source_report": "GF_amend2_20261006.md",
+        "source_row": "q=0.25",
+        "registry_experiment": "EXP-197"
+      },
+      {
+        "q": 0.5,
+        "hits": 53,
+        "total": 101,
+        "source_report": "GF_amend2_20261006.md",
+        "source_row": "q=0.5",
+        "registry_experiment": "EXP-197"
+      },
+      {
+        "q": 1.0,
+        "hits": 60,
+        "total": 101,
+        "source_report": "GF_amend2_20261006.md",
+        "source_row": "q=1",
+        "registry_experiment": "EXP-197"
+      },
+      {
+        "q": 2.0,
+        "hits": 71,
+        "total": 101,
+        "source_report": "GF_amend2_20261006.md",
+        "source_row": "q=2",
+        "registry_experiment": "EXP-197"
+      },
+      {
+        "q": 5.0,
+        "hits": 88,
+        "total": 101,
+        "source_report": "GF_amend2_20261006.md",
+        "source_row": "q=5",
+        "registry_experiment": "EXP-197"
+      }
+    ],
+    "note": "Frozen validation gate aggregates added with permission on 8 October 2026. These are tuning-footage results, not independent test estimates. Unseen site refers to the MEVA negative footage; recall uses the held-out weapon camera or the independent falls collection."
+  },
+  "negative_hours": {
+    "validation": 60.030435,
+    "meva_test": 60.051925925926,
+    "nwpu": 12.022378
+  },
+  "weapons_review": {
+    "scope": "Selected categories in the seed-0 sample of 300 unique views, not a complete causal taxonomy",
+    "total": 300,
+    "categories": [
+      {
+        "label": "background",
+        "count": 144,
+        "share_percent": 48.0,
+        "wilson95_percent": [
+          42.41,
+          53.64
+        ]
+      },
+      {
+        "label": "hand",
+        "count": 33,
+        "share_percent": 11.0,
+        "wilson95_percent": [
+          7.94,
+          15.05
+        ]
+      },
+      {
+        "label": "clothing",
+        "count": 28,
+        "share_percent": 9.33,
+        "wilson95_percent": [
+          6.54,
+          13.16
+        ]
+      },
+      {
+        "label": "unclear",
+        "count": 6,
+        "share_percent": 2.0,
+        "wilson95_percent": [
+          0.92,
+          4.29
+        ]
+      }
+    ],
+    "look_alikes": [
+      "mops and brooms",
+      "notebook edges",
+      "pens"
+    ]
+  },
+  "falls_review": {
+    "scope": "Notice-weighted census of 828 lower-q notices; repeated views across rules",
+    "total": 828,
+    "categories": [
+      {
+        "label": "bending",
+        "count": 25,
+        "share_percent": 3.0,
+        "wilson95_percent": [
+          2.1,
+          4.4
+        ]
+      },
+      {
+        "label": "falling",
+        "count": 0,
+        "share_percent": 0.0,
+        "wilson95_percent": [
+          0.0,
+          0.5
+        ]
+      },
+      {
+        "label": "occluded",
+        "count": 5,
+        "share_percent": 0.6,
+        "wilson95_percent": [
+          0.3,
+          1.4
+        ]
+      },
+      {
+        "label": "riding",
+        "count": 267,
+        "share_percent": 32.2,
+        "wilson95_percent": [
+          29.2,
+          35.5
+        ]
+      },
+      {
+        "label": "rising",
+        "count": 5,
+        "share_percent": 0.6,
+        "wilson95_percent": [
+          0.3,
+          1.4
+        ]
+      },
+      {
+        "label": "sitting",
+        "count": 275,
+        "share_percent": 33.2,
+        "wilson95_percent": [
+          30.1,
+          36.5
+        ]
+      },
+      {
+        "label": "squatting",
+        "count": 2,
+        "share_percent": 0.2,
+        "wilson95_percent": [
+          0.1,
+          0.9
+        ]
+      },
+      {
+        "label": "standing",
+        "count": 24,
+        "share_percent": 2.9,
+        "wilson95_percent": [
+          2.0,
+          4.3
+        ]
+      },
+      {
+        "label": "unclear",
+        "count": 27,
+        "share_percent": 3.3,
+        "wilson95_percent": [
+          2.3,
+          4.7
+        ]
+      },
+      {
+        "label": "vehicle",
+        "count": 18,
+        "share_percent": 2.2,
+        "wilson95_percent": [
+          1.4,
+          3.4
+        ]
+      },
+      {
+        "label": "walking",
+        "count": 180,
+        "share_percent": 21.7,
+        "wilson95_percent": [
+          19.1,
+          24.7
+        ]
+      }
+    ]
+  },
+  "gi": [
+    {
+      "configuration": "serial4",
+      "knife_p95_s": [
+        2235.633,
+        2235.633
+      ],
+      "firearm_p95_s": [
+        2244.624,
+        2242.948
+      ],
+      "falls_p95_s": [
+        2237.161,
+        2237.059
+      ],
+      "result": "Latency FAIL"
+    },
+    {
+      "configuration": "batch4",
+      "knife_p95_s": [
+        2.04,
+        2.041
+      ],
+      "firearm_p95_s": [
+        3.832,
+        3.824
+      ],
+      "falls_p95_s": [
+        2335.741,
+        2335.64
+      ],
+      "result": "Latency FAIL"
+    },
+    {
+      "configuration": "V_separate4",
+      "knife_p95_s": [
+        2.04,
+        2.041
+      ],
+      "firearm_p95_s": [
+        3.863,
+        3.858
+      ],
+      "falls_p95_s": [
+        2442.224,
+        2442.119
+      ],
+      "result": "Latency FAIL"
+    },
+    {
+      "configuration": "V_separate3",
+      "knife_p95_s": [
+        1.825,
+        1.825
+      ],
+      "firearm_p95_s": [
+        3.779,
+        3.774
+      ],
+      "falls_p95_s": [
+        1441.434,
+        1441.249
+      ],
+      "result": "Latency FAIL"
+    }
+  ]
+}

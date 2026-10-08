@@ -1,0 +1,16 @@
+cff-version: 1.2.0
+message: "If you use this research software, please cite it using this metadata."
+type: software
+title: "Campus CCTV Incident Detection"
+authors:
+  - family-names: "Blunden-Slusarski"
+    given-names: "Max"
+version: 1.0.0
+license: MIT
+repository-code: "https://github.com/Saizedml/campus-cctv-incident-detection"
+abstract: "A research prototype for weapon and person-down evidence triage, with frozen event rules, aggregate evaluation and a synthetic review dashboard. Original criteria were not met, and the combined paced capacity gate failed."
+keywords:
+  - computer vision
+  - event evaluation
+  - human review
+  - reproducible research
