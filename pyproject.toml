@@ -1,0 +1,44 @@
+[build-system]
+requires = ["setuptools==80.9.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "campus-cctv-incident-detection"
+version = "1.0.0"
+description = "Causal weapons and person-down review pipeline with honest event-level evaluation"
+readme = "README.md"
+requires-python = ">=3.12"
+license = "MIT"
+authors = [{name = "Max Blunden-Slusarski"}]
+dependencies = ["numpy==2.3.5", "scipy==1.15.3", "PyYAML==6.0.2"]
+
+[project.optional-dependencies]
+dev = ["pytest==8.4.1", "ruff==0.12.1", "matplotlib==3.10.3", "Pillow==12.3.0", "pre-commit==4.2.0"]
+dashboard = []
+# Optional local-model runtime. CPU tests never install or import this extra.
+inference = [
+  "torch==2.13.0", "torchvision==0.28.0", "ultralytics==8.4.121",
+  "rfdetr==1.11.0", "transformers==5.17.0", "accelerate==1.15.0",
+  "opencv-python==5.0.0.93", "Pillow==12.3.0", "lap==0.5.13",
+  "supervision==0.30.5",
+]
+
+[project.urls]
+Repository = "https://github.com/Saizedml/campus-cctv-incident-detection"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+"campus_cctv.dashboard" = ["static/*"]
+
+[tool.ruff]
+target-version = "py312"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "I"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
