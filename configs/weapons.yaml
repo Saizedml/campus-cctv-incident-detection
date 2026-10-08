@@ -1,0 +1,53 @@
+model: FT-HNF
+operating_points:
+  '0.1':
+    statistic: best
+    k: 1
+    window: 2
+    tau_hi: 1.000001
+    tau_v: 0.0
+    veto_hi: 1.000001
+    tau_a: 0.8308733105659485
+  '0.25':
+    statistic: best
+    k: 1
+    window: 2
+    tau_hi: 1.000001
+    tau_v: 0.0
+    veto_hi: 1.000001
+    tau_a: 0.7476891279220581
+  '0.5':
+    statistic: best
+    k: 1
+    window: 2
+    tau_hi: 1.000001
+    tau_v: 0.0
+    veto_hi: 1.000001
+    tau_a: 0.5453240275382996
+  '1.0':
+    statistic: best
+    k: 1
+    window: 2
+    tau_hi: 1.000001
+    tau_v: 0.0
+    veto_hi: 1.000001
+    tau_a: 0.20413830876350403
+  '2.0':
+    statistic: best
+    k: 1
+    window: 2
+    tau_hi: 0.6111111111111112
+    tau_v: 0.0
+    veto_hi: 0.6111111111111112
+    tau_a: 0.20413830876350403
+  '5.0':
+    statistic: best
+    k: 1
+    window: 2
+    tau_hi: 0.2222222222222222
+    tau_v: 0.0
+    veto_hi: 0.2222222222222222
+    tau_a: 0.20413830876350403
+tiers:
+  Alert now: '2.0'
+  Check when free: '5.0'

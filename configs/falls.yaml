@@ -1,0 +1,74 @@
+model: FB0
+operating_points:
+  '0.1':
+    arm: fb0
+    family: R4
+    enabled: true
+    fallback: false
+    tau_down: 0.65
+    T_p: 0.5
+    tau_f: 0.9
+    n: 3
+    B: 'on'
+  '0.25':
+    arm: fb0
+    family: R4
+    enabled: true
+    fallback: false
+    tau_down: 0.5
+    T_p: 1.0
+    tau_f: 0.95
+    n: 3
+    B: 'off'
+  '0.5':
+    arm: fb0
+    family: R4
+    enabled: true
+    fallback: false
+    tau_down: 0.35
+    T_p: 0.5
+    tau_f: 0.95
+    n: 1
+    B: 'on'
+  '1.0':
+    arm: fb0
+    family: R4
+    enabled: true
+    fallback: false
+    tau_down: 0.35
+    T_p: 0.5
+    tau_f: 0.9
+    n: 1
+    B: 'on'
+  '2.0':
+    arm: fb0
+    family: R4
+    enabled: true
+    fallback: false
+    tau_down: 0.35
+    T_p: 0.5
+    tau_f: 0.95
+    n: 1
+    B: 'off'
+  '5.0':
+    arm: fb0
+    family: R4
+    enabled: true
+    fallback: false
+    tau_down: 0.35
+    T_p: 0.5
+    tau_f: 0.8
+    n: 1
+    B: 'off'
+tiers:
+  Alert now: '2.0'
+  Check when free: '5.0'
+class_order:
+- fall
+- down
+- lying_deliberate
+- sitting
+- low_posture
+- upright_other
+window_steps: 20
+rate_hz: 10

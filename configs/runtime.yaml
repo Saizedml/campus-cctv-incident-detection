@@ -1,0 +1,19 @@
+# Set these environment variables to authorised local files before inference.
+pose_weights: ${CCTV_POSE_WEIGHTS}
+weapon_weights: ${CCTV_WEAPON_WEIGHTS}
+falls_weights: ${CCTV_FALLS_WEIGHTS}
+verifier_weights: ${CCTV_VERIFIER_WEIGHTS}
+source_video: ${CCTV_SOURCE_VIDEO}
+output: output/notices.jsonl
+evidence_output: output/notices.evidence.jsonl
+device: cpu
+source_id: demo-source
+camera_id: demo-camera
+perception_hz: 10
+pose_image_size: 1920
+operating_points: [2.0, 5.0]
+weapons_config: configs/weapons.yaml
+falls_config: configs/falls.yaml
+pose_sha256: 2fbf16367022256a226035695c5c389384c6706e8bb8ab8fcd0e7976f05443c4
+weapon_sha256: 7a538a1e51f4a5ca9048481bc67d81423d9e562f24606922b9e008cf792a499a
+falls_sha256: fccd8367586b64c6e5ecae32e13472006a7038f83267b29ee56fbf36a4587136
