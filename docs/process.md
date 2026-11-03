@@ -1,6 +1,6 @@
 # How this was built
 
-Max Blunden-Slusarski designed the approach from a literature review, chose the datasets, wrote the evaluation protocol and success criteria, reviewed the results and footage, and made every go/no-go decision. AI coding agents (OpenAI Codex) wrote most of the code under that gated process. This repository is a curated release; the full experiment history, experiment registry and 26 gate reports remain in a private research repository.
+I designed the approach from a literature review, chose the datasets, wrote the evaluation protocol and success criteria, reviewed the results and footage, and made every go/no-go decision. AI coding agents (OpenAI Codex) wrote most of the code under that gated process. This repository is a curated release; the full experiment history, experiment registry and 26 gate reports remain in a private research repository.
 
 The workflow separated decisions from execution: define comparisons and stop rules, preserve source identities, inspect validation evidence, obtain approval, freeze, then execute the locked assessment once. Failures were retained rather than hidden. Human acceptance meant the research deliverable was accepted with its limitations; it did not turn an unmet numerical criterion into a pass.
 
