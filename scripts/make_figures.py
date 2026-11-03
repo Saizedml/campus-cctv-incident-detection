@@ -374,7 +374,7 @@ def social_preview() -> None:
     ax.text(
         0.065,
         0.065,
-        "Max Blunden-Slusarski · Research internship prototype",
+        "Max Blunden · Research internship prototype",
         fontsize=13,
         color="white",
     )
