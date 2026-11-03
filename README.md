@@ -131,7 +131,13 @@ assets/          original plots, diagrams and synthetic interface captures
 
 ## How this was built
 
-I designed the approach from a literature review, chose the datasets, wrote the evaluation protocol and success criteria, reviewed the results and footage myself, and made every go/no-go decision. AI coding agents (OpenAI Codex) wrote most of the code under that gated process.
+**My role.** I designed the approach from a literature review, chose the datasets, wrote the evaluation protocol and success criteria, reviewed the results and footage myself, and made every go/no-go decision across 26 documented gates. I directed AI coding agents (OpenAI Codex and Claude Code), which wrote most of the code within that gated process.
+
+Key decisions I made:
+- Paired a crop detector with a conditional multimodal LLM verifier to keep small-object evidence while limiting verifier cost.
+- Switched to generic weapon alerts after knife/firearm class guesses proved unreliable.
+- Kept the original targets on record as NOT MET and labelled the later criterion revision as post-hoc rather than presenting it as a pass.
+- Preserved the failed combined real-time test instead of changing system behaviour to obtain a pass.
 
 This repo is a curated release. The full experiment history, including 26 review checkpoints ("gates") where code and settings were frozen and approved before the next step, is kept in a private research repository. [The gated process](docs/process.md) records freezes, failed gates, declared deviations and human approvals.
 
